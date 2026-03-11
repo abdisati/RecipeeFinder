@@ -54,7 +54,7 @@ const data={
 
 function SearchBar(){
   return <div className="flex justify-around m-4 px-2 gap-2">
-    <input className="w-64 flex-1 border-2 " type="text" placeholder="Type to search the recipee"/> <button className="border-2 rounded-b-xs shadow-2xl px-1">Search</button>
+    <input className="w-64 flex-1 border-2 rounded-3xl shadow-lg" type="text" placeholder="Type to search the recipee"/> <button className="border-2 rounded-full shadow-2xl px-1">Search</button>
     </div>;
 }
 
