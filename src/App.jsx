@@ -59,7 +59,7 @@ function SearchBar(){
 }
 
 function Result(){
- return  <div className="grid grid-cols-4 gap-2">
+ return  <div className="grid grid-cols-4 gap-2 m-4">
 <RecipeeCard/> <RecipeeCard/><RecipeeCard/>
   </div>;
 }
@@ -82,12 +82,12 @@ function App() {
  
 
   return (
-    <>
+    <div className="m-4">
     <div className="flex items-center justify-center "><SearchBar/></div>
     
  <Result/>
 
-    </>
+    </div>
   )
 }
 
