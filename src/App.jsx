@@ -54,7 +54,7 @@ const data={
 
 function SearchBar(){
   return <div className="flex justify-around m-4 px-2 gap-2">
-    <input className="flex-1 border-2" type="text" placeholder="Type to search the recipee"/> <button className="border-2 rounded-b-xs shadow-2xl px-1">Search</button>
+    <input className="w-64 flex-1 border-2 " type="text" placeholder="Type to search the recipee"/> <button className="border-2 rounded-b-xs shadow-2xl px-1">Search</button>
     </div>;
 }
 
@@ -83,7 +83,8 @@ function App() {
 
   return (
     <>
-    <SearchBar/>
+    <div className="flex items-center justify-center "><SearchBar/></div>
+    
  <Result/>
 
     </>
