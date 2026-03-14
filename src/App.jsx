@@ -13,25 +13,26 @@ function SearchBar({recipee,handleInput,fetchRecipee}){
 }
 
 function Result({result}){
-  
+
   const list=result.map((val,index)=> {
 const {strMeal,strCategory,strArea,strMealThumb}=val;
-return <ResultCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} key={index}/>
+return <RecipeeCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} key={index}/>
 });
  return  <div className="grid grid-cols-4 gap-2 m-4">
   {list}
   </div>;
 }
 
-function RecipeeCard(){
+function RecipeeCard(props){
+const {strMeal, strCategory,strArea,strMealThumb}=props;
 
 
   return(
     <div>
-      <img src={`${data.thumb}`} alt="An image of a food" />
-      <p className="text-3xl text-center">{data.meal}</p>
-      <p className="text-2xl text-center">{data.category}</p>
-      <p className="text-2xl text-center">{data.area}</p>
+      <img src={`${strMealThumb}`} alt="An image of a food" />
+      <p className="text-3xl text-center">{strMeal}</p>
+      <p className="text-2xl text-center">{strCategory}</p>
+      <p className="text-2xl text-center">{strArea}</p>
     </div>
   );
 }
@@ -43,7 +44,7 @@ function App() {
 
  async function fetchRecipee(){
   try{
-    const data= await recipeeFinder();
+    const data= await recipeeFinder.getRecipee(recipee);
     setResult(data);
   }
   catch(error){
