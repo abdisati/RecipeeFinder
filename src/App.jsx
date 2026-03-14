@@ -1,25 +1,25 @@
 import { Recipee } from "./utility/recipee";
 import { useState } from "react";
 
-// const data={
-//   id:"53004",
-//   meal:"Dal Makhani",
-//   category:"vegeterian",
-//   area:"Indian",
-//   thumb:"https://www.themealdb.com/images/media/meals/qxytrx1511304021.jpg"
-// }
+
 
 const recipeeFinder=new Recipee(); //initialize recipee class
 
-function SearchBar(){
+function SearchBar({recipee,handleInput,fetchRecipee}){
   return <div className="flex justify-around m-4 px-2 gap-2">
-    <input className="w-64 flex-1 border-2 rounded-3xl shadow-lg" type="text" placeholder="Type to search the recipee"/> <button className="border-2 rounded-full shadow-2xl px-1">Search</button>
+    <input value={recipee} className="w-64 flex-1 border-2 rounded-3xl shadow-lg" type="text" placeholder="Type to search the recipee" onChange={e=>{handleInput(e)}}/> 
+    <button className="border-2 rounded-full shadow-2xl px-1" onClick={fetchRecipee}>Search</button>
     </div>;
 }
 
-function Result(){
+function Result({result}){
+  
+  const list=result.map((val,index)=> {
+const {strMeal,strCategory,strArea,strMealThumb}=val;
+return <ResultCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} key={index}/>
+});
  return  <div className="grid grid-cols-4 gap-2 m-4">
-<RecipeeCard/> <RecipeeCard/><RecipeeCard/>
+  {list}
   </div>;
 }
 
@@ -38,13 +38,30 @@ function RecipeeCard(){
 
 
 function App() {
- 
+ const [result, setResult]=useState([]); 
+ const [recipee, setRecipee]=useState('');
+
+ async function fetchRecipee(){
+  try{
+    const data= await recipeeFinder();
+    setResult(data);
+  }
+  catch(error){
+    console.log(error.message);
+  }
+ }
+
+ function handleInput(e){
+  let text=e.target.value.trim();
+  setRecipee(text);
+ }
+
 
   return (
     <div className="m-4">
-    <div className="flex items-center justify-center "><SearchBar/></div>
+    <div className="flex items-center justify-center "><SearchBar recipee={recipee} fetchRecipee={fetchRecipee} handleInput={handleInput}/></div>
     
- <Result/>
+ <Result result={result}/>
 
     </div>
   )

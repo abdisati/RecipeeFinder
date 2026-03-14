@@ -2,9 +2,9 @@ export class Recipee{
     async getRecipee(food){
         //validate the entry or data
         if(!food) throw new Error('Please Enter the food');
-        const food=food.trim(); //trim white spaces
+        const foodTrimmed=food.trim(); //trim white spaces
 
-        const responseData=await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+        const responseData=await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodTrimmed}`);
         
         //if response is not ok throw an error
         if(!responseData.ok) throw new Error('Result not found');
