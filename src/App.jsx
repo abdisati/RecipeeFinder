@@ -58,12 +58,15 @@ function App() {
     setLoading(true);
     const data= await recipeeFinder.getRecipee(recipee);
     setResult(data);
+    //reset the input
+    
   }
   catch(error){
     setError(error.message);
   }
   finally{
     setLoading(false);
+    setResult('');
   }
  }
 
