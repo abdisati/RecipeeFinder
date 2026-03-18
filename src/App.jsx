@@ -20,8 +20,8 @@ function SearchBar({recipee,handleInput,fetchRecipee}){
 function Result({result,isLoading,error}){
 
   const list=result.map((val,index)=> {
-const {strMeal,strCategory,strArea,strMealThumb}=val;
-return <RecipeeCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} key={index}/>
+const {strMeal,strCategory,strArea,strMealThumb,strYoutube}=val;
+return <RecipeeCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} strYoutube={strYoutube} key={index}/>
 });
 
 if(isLoading){
@@ -38,7 +38,7 @@ else{
 }
 
 function RecipeeCard(props){
-const {strMeal, strCategory,strArea,strMealThumb}=props;
+const {strMeal, strCategory,strArea,strMealThumb,strYoutube}=props;
 
 
   return(
@@ -47,6 +47,7 @@ const {strMeal, strCategory,strArea,strMealThumb}=props;
       <p className="text-3xl text-center">{strMeal}</p>
       <p className="text-2xl text-center">{strCategory}</p>
       <p className="text-2xl text-center">{strArea}</p>
+      <p className="text-2xl text-center"><a href={`${strYoutube}`} target="blank" className="bg-red-400">Youtube</a></p>
     </div>
   );
 }
