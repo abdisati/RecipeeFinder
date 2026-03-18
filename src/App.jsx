@@ -64,7 +64,7 @@ function App() {
     const data= await recipeeFinder.getRecipee(recipee);
     setResult(data);
     //reset the input
-    setRecipee('');
+ 
     
   }
   catch(error){
@@ -72,6 +72,7 @@ function App() {
   }
   finally{
     setLoading(false);
+    setRecipee('');
     
   }
  }

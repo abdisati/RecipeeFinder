@@ -10,6 +10,8 @@ export class Recipee{
         if(!responseData.ok) throw new Error('Result not found');
 
         const data=await responseData.json();
+        //check if meal is null
+        if(!data.meals) throw new Error('No result found, Please try another one!')
 
         //check if result or meals is available
         if(data.meals.length==0) throw new Error('No recipees');
