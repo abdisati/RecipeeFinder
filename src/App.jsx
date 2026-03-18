@@ -22,10 +22,14 @@ return <RecipeeCard strMeal={strMeal} strCategory={strCategory} strArea={strArea
 if(isLoading){
   return <p>Loading...</p>
 }
+else if(error){
+  return <p>{error}</p>
+}
+else{
 
  return  <div className="grid grid-cols-4 gap-2 m-4">
   {list}
-  </div>;
+  </div>;}
 }
 
 function RecipeeCard(props){
