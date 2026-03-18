@@ -12,12 +12,17 @@ function SearchBar({recipee,handleInput,fetchRecipee}){
     </div>;
 }
 
-function Result({result}){
+function Result({result,isLoading,error}){
 
   const list=result.map((val,index)=> {
 const {strMeal,strCategory,strArea,strMealThumb}=val;
 return <RecipeeCard strMeal={strMeal} strCategory={strCategory} strArea={strArea} strMealThumb={strMealThumb} key={index}/>
 });
+
+if(isLoading){
+  return <p>Loading...</p>
+}
+
  return  <div className="grid grid-cols-4 gap-2 m-4">
   {list}
   </div>;
@@ -46,11 +51,15 @@ function App() {
 
  async function fetchRecipee(){
   try{
+    setLoading(true);
     const data= await recipeeFinder.getRecipee(recipee);
     setResult(data);
   }
   catch(error){
-    console.log(error.message);
+    setError(error.message);
+  }
+  finally{
+    setLoading(false);
   }
  }
 
@@ -64,7 +73,7 @@ function App() {
     <div className="m-4">
     <div className="flex items-center justify-center "><SearchBar recipee={recipee} fetchRecipee={fetchRecipee} handleInput={handleInput}/></div>
     
- <Result result={result}/>
+ <Result result={result} isLoading={isLoading} error={error}/>
 
     </div>
   )
