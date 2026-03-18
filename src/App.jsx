@@ -7,7 +7,12 @@ const recipeeFinder=new Recipee(); //initialize recipee class
 
 function SearchBar({recipee,handleInput,fetchRecipee}){
   return <div className="flex justify-around m-4 px-2 gap-2">
-    <input value={recipee} className="w-64 flex-1 border-2 rounded-3xl shadow-lg" type="text" placeholder="Type to search the recipee" onChange={e=>{handleInput(e)}}/> 
+    <input value={recipee} className="w-64 flex-1 border-2 rounded-3xl shadow-lg" type="text" placeholder="Type to search the recipee" onChange={e=>{handleInput(e)}}
+    onKeyDown={(e)=>{
+      if(e.key=='Enter'){
+        fetchRecipee();
+      }
+    }}/> 
     <button className="border-2 rounded-full shadow-2xl px-1" onClick={fetchRecipee}>Search</button>
     </div>;
 }
