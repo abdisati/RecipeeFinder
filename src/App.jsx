@@ -41,6 +41,8 @@ const {strMeal, strCategory,strArea,strMealThumb}=props;
 function App() {
  const [result, setResult]=useState([]); 
  const [recipee, setRecipee]=useState('');
+ const [isLoading,setLoading]=useState(false);
+ const [error,setError]=useState('');
 
  async function fetchRecipee(){
   try{
